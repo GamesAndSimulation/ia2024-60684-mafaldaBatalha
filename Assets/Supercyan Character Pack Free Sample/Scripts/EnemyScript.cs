@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
-   
-    private Transform startPos, endPos;
+    public DiscoSystem discoSystem;
     public List<Transform> positions;
     public float speed = 0.5f;
     public float totalLives;
 
+    private Transform startPos, endPos;
     private float startTime, totalDistance;
     private int index = 0;
     private float currentLives;
@@ -31,7 +31,10 @@ public class EnemyScript : MonoBehaviour
     {
 
         if (currentLives == 0)
+        {
+            discoSystem.killAnEnemy();
             gameObject.SetActive(false);
+        }
 
         float t = (Time.time - startTime) * speed;
         //t += Time.deltaTime;  //alternative
@@ -66,8 +69,13 @@ public class EnemyScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if(other.gameObject.tag == "Player")
+        {
+            Debug.Log("AAAAA");
             currentLives--;
+        }
+            
     }
 
 

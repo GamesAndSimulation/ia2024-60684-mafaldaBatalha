@@ -11,10 +11,11 @@ public class MainSystemScript : MonoBehaviour
     public GameObject model;
     public GameObject camera;   
     public CharacterController characterController;
-    public float speed = 5.0f;
-    public float jumpSpeed = 6.0f;
+    public float speed;
+    public float jumpSpeed;
     public Boolean bounced = false;
 
+    private float bounceSpeed;
     private float angle;
     private float turnSmoothTime = 0.1f;
     private float turnSmoothVelocity;
@@ -72,9 +73,14 @@ public class MainSystemScript : MonoBehaviour
             characterController.stepOffset = originalStepOffset;
             ySpeed = -0.5f;
 
-            if (Input.GetButton("Jump") || bounced)
+
+            if (Input.GetButton("Jump"))
             {
                 ySpeed = jumpSpeed;
+            }
+            else if(bounced)
+            {
+                ySpeed = bounceSpeed;
                 bounced = false;
             }
         }
@@ -93,9 +99,14 @@ public class MainSystemScript : MonoBehaviour
 
         //rotate the model of the player on the y axis according 
         model.transform.eulerAngles = new Vector3(0f, angle, 0f);
-
- 
     }
 
+    public void Bounced(float bounceSpeed)
+    {
+        this.bounceSpeed = bounceSpeed;
+        bounced = true;
+    }
+
+    
    
 }

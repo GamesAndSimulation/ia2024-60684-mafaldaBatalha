@@ -26,20 +26,12 @@ public class DiscoCube : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            originalJumpSpeed = mainSystemScript.jumpSpeed;
-            mainSystemScript.jumpSpeed = bounceSpeed;
-            mainSystemScript.bounced = true;
+            mainSystemScript.Bounced(bounceSpeed);
+           
         }
 
     }
 
-    void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            mainSystemScript.jumpSpeed = originalJumpSpeed;
-        }
-    }
 
 
 }
