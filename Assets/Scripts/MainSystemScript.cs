@@ -13,6 +13,7 @@ public class MainSystemScript : MonoBehaviour
     public CharacterController characterController;
     public float speed = 5.0f;
     public float jumpSpeed = 6.0f;
+    public Boolean bounced = false;
 
     private float angle;
     private float turnSmoothTime = 0.1f;
@@ -42,7 +43,7 @@ public class MainSystemScript : MonoBehaviour
         if (horizontalValue == 0 && verticalValue == 0)
         {
             time += Time.deltaTime;
-            if (time > 5)
+            if (time > 10)
             {
                 angle = 180;
             }
@@ -67,12 +68,14 @@ public class MainSystemScript : MonoBehaviour
         ySpeed += Physics.gravity.y * Time.deltaTime;
 
         if (characterController.isGrounded){
+
             characterController.stepOffset = originalStepOffset;
             ySpeed = -0.5f;
 
-            if (Input.GetButton("Jump"))
+            if (Input.GetButton("Jump") || bounced)
             {
                 ySpeed = jumpSpeed;
+                bounced = false;
             }
         }
         else
