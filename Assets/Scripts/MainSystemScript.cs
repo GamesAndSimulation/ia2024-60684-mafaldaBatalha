@@ -10,9 +10,11 @@ public class MainSystemScript : MonoBehaviour
 {
     public GameObject model, camera, redTint;   
     public CharacterController characterController;
+    public SceneManagerScript sceneManagerScript;
     public float speed, jumpSpeed, lives;
     public DiscoSystem discoSystem;
     public PaperPlane paperPlane;
+    public String gameOverScene;
 
     public Transform position1, position2, position3, position4, position5;
 
@@ -162,7 +164,10 @@ public class MainSystemScript : MonoBehaviour
     {
         lives--;
         redTint.SetActive(true);
-        StartCoroutine(waiter(0.5f));
+        StartCoroutine(waiter(0.7f));
+
+        if (lives <= 0)
+            LoadScene(gameOverScene);
         
     }
 
@@ -178,6 +183,10 @@ public class MainSystemScript : MonoBehaviour
         GUI.Label(new Rect(10, 50, 400, 100), "Lives: " + lives);
     }
 
+    public void LoadScene(String sceneName)
+    {
+        sceneManagerScript.LoadScene(sceneName);
+    }
 
     IEnumerator waiter(float seconds)
     {
