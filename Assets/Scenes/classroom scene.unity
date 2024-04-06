@@ -4176,8 +4176,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 329787551}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1277562, y: 0.00000003413077, z: -0.000000004396444, w: 0.9918056}
-  m_LocalPosition: {x: -193.07, y: 15.799999, z: 263.2369}
+  m_LocalRotation: {x: 0.18545368, y: 0.000022038961, z: -0.0000041593594, w: 0.982653}
+  m_LocalPosition: {x: -193.07011, y: 16.575022, z: 261.71503}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5111,7 +5111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &413763228
 Transform:
   m_ObjectHideFlags: 0
@@ -8839,6 +8839,10 @@ PrefabInstance:
     - target: {fileID: 7239979551046584319, guid: 8c2d3588d63061d41b5142b95e5bc969, type: 3}
       propertyPath: m_Avatar
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239979551046584319, guid: 8c2d3588d63061d41b5142b95e5bc969, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12915,7 +12919,7 @@ MonoBehaviour:
   enemies: {fileID: 830454587}
   boxCollider: {fileID: 1021657772}
   paperPlane: {fileID: 8164078559996350289}
-  speed: 90
+  discoBallSpeed: 0
   enemyNum: 3
 --- !u!65 &1021657772
 BoxCollider:
@@ -12985,7 +12989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad82821fa7b90dd4f928ed3de246a4f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 0}
+  model: {fileID: 1542785172}
   camera: {fileID: 329787551}
   redTint: {fileID: 1517339365}
   characterController: {fileID: 1024361122}
@@ -12996,6 +13000,7 @@ MonoBehaviour:
   discoSystem: {fileID: 1021657771}
   paperPlane: {fileID: 8164078559996350289}
   gameOverScene: lScene
+  font: {fileID: 12800000, guid: 30dc370b164eefc43b95744fc796dad0, type: 3}
   position1: {fileID: 485028363}
   position2: {fileID: 417524259}
   position3: {fileID: 190619235}
@@ -13264,7 +13269,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1075400430}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.109742366, y: -0, z: -0, w: 0.9939601}
+  m_LocalRotation: {x: 0.16759641, y: 0.000022058857, z: -0.0000037500274, w: 0.9858557}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18465,7 +18470,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1500739977}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1277562, y: 0.000000017065386, z: -0.0000000021982216, w: 0.9918056}
+  m_LocalRotation: {x: 0.18545368, y: 0.000022023009, z: -0.000004156348, w: 0.982653}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19290,6 +19295,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4925570476506582, guid: c2eb0536a6bbfb94590dc4ae7eb803da, type: 3}
   m_PrefabInstance: {fileID: 1538885365}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1542785172 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 646651457446580642, guid: 8c2d3588d63061d41b5142b95e5bc969, type: 3}
+  m_PrefabInstance: {fileID: 696754114}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1546709280
 GameObject:
@@ -21509,7 +21519,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1699365078}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1457755, y: -0.000000017022577, z: 0.0000000025082683, w: 0.9893177}
+  m_LocalRotation: {x: 0.20329696, y: 0.000021924925, z: -0.000004552337, w: 0.97911716}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -22636,8 +22646,8 @@ Transform:
   m_GameObject: {fileID: 1767735272}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -161, y: 16.4, z: 251.3}
-  m_LocalScale: {x: 68.41055, y: 1, z: 26.268042}
+  m_LocalPosition: {x: -161, y: 17.1, z: 251.3}
+  m_LocalScale: {x: 68.41055, y: 0.46531, z: 26.268042}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 413763228}
@@ -22661,8 +22671,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.9999999, y: 2.017727, z: 1}
-  m_Center: {x: 0, y: 0.50886345, z: 0}
+  m_Size: {x: 0.9999999, y: 2.664075, z: 1}
+  m_Center: {x: 0, y: 0.8320373, z: 0}
 --- !u!23 &1767735275
 MeshRenderer:
   m_ObjectHideFlags: 0

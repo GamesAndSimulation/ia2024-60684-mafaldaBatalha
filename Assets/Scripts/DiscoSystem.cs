@@ -7,7 +7,7 @@ public class DiscoSystem : MonoBehaviour
     public GameObject discoBall, disco, enemies;
     public Collider boxCollider;
     public PaperPlane paperPlane;
-    public float speed, enemyNum;
+    public float discoBallSpeed, enemyNum;
     
     // Start is called before the first frame update
     void Start()
@@ -19,7 +19,7 @@ public class DiscoSystem : MonoBehaviour
     void Update()
     {
         //make the disco ball rotate
-        discoBall.transform.eulerAngles = new Vector3(0f, speed * Time.time, 0f);
+        discoBall.transform.eulerAngles = new Vector3(0f, discoBallSpeed * Time.time, 0f);
     }
 
     public void KillAnEnemy()
@@ -39,7 +39,7 @@ public class DiscoSystem : MonoBehaviour
         if (other.gameObject.tag == "Player") {
 
             disco.SetActive(true);
-            boxCollider.enabled = false;
+            DisableCollider();
 
         }
     }
@@ -47,7 +47,7 @@ public class DiscoSystem : MonoBehaviour
     public void ResetDisco()
     {
         disco.SetActive(true);
-        boxCollider.enabled = false;
+        DisableCollider();
         foreach (Transform child in transform)
         {
             enemyNum++;
@@ -63,5 +63,10 @@ public class DiscoSystem : MonoBehaviour
     public void EnableCollider()
     {
         boxCollider.enabled = true;
+    }
+
+    public void DisableCollider()
+    {
+        boxCollider.enabled = false;
     }
 }

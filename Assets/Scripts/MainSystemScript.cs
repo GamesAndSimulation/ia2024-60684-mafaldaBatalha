@@ -15,6 +15,7 @@ public class MainSystemScript : MonoBehaviour
     public DiscoSystem discoSystem;
     public PaperPlane paperPlane;
     public String gameOverScene;
+    public Font font;
 
     public Transform position1, position2, position3, position4, position5;
 
@@ -51,7 +52,7 @@ public class MainSystemScript : MonoBehaviour
         }
 
         if (Input.GetKeyDown("2"))
-        {
+        {  
             transform.SetParent(null);
             discoSystem.ResetDisco();
             paperPlane.ResetPlane();
@@ -63,6 +64,7 @@ public class MainSystemScript : MonoBehaviour
         {
             transform.SetParent(null);
             discoSystem.EndDisco();
+            discoSystem.DisableCollider();
             paperPlane.ResetPlane();
             paperPlane.turnOnDangerZones();
             TeleportPlayer(position3);
@@ -72,6 +74,7 @@ public class MainSystemScript : MonoBehaviour
         if (Input.GetKeyDown("4"))
         {
             transform.SetParent(null);
+            discoSystem.DisableCollider();
             discoSystem.EndDisco();
             TeleportPlayer(position4);
 
@@ -178,9 +181,11 @@ public class MainSystemScript : MonoBehaviour
 
     private void OnGUI()
     {
-        GUI.contentColor = Color.black;
-        GUI.skin.label.fontSize = 50;
-        GUI.Label(new Rect(10, 50, 400, 100), "Lives: " + lives);
+        
+        GUI.contentColor = Color.white;
+        GUI.skin.label.font = font;
+        GUI.skin.label.fontSize = 25;
+        GUI.Label(new Rect(10, 5, 400, 100), "Lives: " + lives);
     }
 
     public void LoadScene(String sceneName)
