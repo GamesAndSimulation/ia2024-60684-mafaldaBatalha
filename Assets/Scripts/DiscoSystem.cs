@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DiscoSystem : MonoBehaviour
 {
-    public GameObject discoBall, disco, enemies;
+    public MainSystemScript mainSystemScript;
+    public GameObject discoBall, disco, enemies, discoCollectibles, bookCollectibles;
     public Collider boxCollider;
     public PaperPlane paperPlane;
     public float discoBallSpeed, enemyNum;
@@ -31,6 +32,9 @@ public class DiscoSystem : MonoBehaviour
             EndDisco();
             paperPlane.ResetPlane();
             paperPlane.turnOnDangerZones();
+            bookCollectibles.SetActive(true);
+            mainSystemScript.AudioOn();
+
         }
     }
 
@@ -38,6 +42,7 @@ public class DiscoSystem : MonoBehaviour
     {
         if (other.gameObject.tag == "Player") {
 
+            mainSystemScript.AudioOff();
             disco.SetActive(true);
             DisableCollider();
 
@@ -46,12 +51,13 @@ public class DiscoSystem : MonoBehaviour
 
     public void ResetDisco()
     {
+        mainSystemScript.AudioOff();
         disco.SetActive(true);
         DisableCollider();
-        foreach (Transform child in transform)
+        for(int i = 0; i < enemies.transform.childCount; i++)
         {
             enemyNum++;
-            child.gameObject.SetActive(true);
+            enemies.transform.GetChild(i).gameObject.SetActive(true);
         }
     }
 
@@ -68,5 +74,18 @@ public class DiscoSystem : MonoBehaviour
     public void DisableCollider()
     {
         boxCollider.enabled = false;
+    }
+
+    public void turnOnBookCollectibles()
+    {
+        for(int i=0; i<bookCollectibles.transform.childCount; i++)
+        {
+            bookCollectibles.transform.GetChild(i).gameObject.SetActive(true);
+        }
+    }
+
+    public void turnOffBookCollectibles()
+    {
+        bookCollectibles.SetActive(false);
     }
 }

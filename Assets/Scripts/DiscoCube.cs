@@ -8,6 +8,7 @@ public class DiscoCube : MonoBehaviour
     public CharacterController characterController;
     public float bounceSpeed;
     public  MainSystemScript mainSystemScript;
+    public AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class DiscoCube : MonoBehaviour
         if (other.tag == "Player")
         {
             mainSystemScript.Bounced(bounceSpeed);
+            audioSource.Play();
            
         }
 
