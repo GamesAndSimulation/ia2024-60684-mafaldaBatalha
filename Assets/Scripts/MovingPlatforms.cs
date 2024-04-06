@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MovingPlatforms : MonoBehaviour
 {
-
-    public MoveableObject moveableObject;
     
     void OnTriggerEnter(Collider other)
     {
