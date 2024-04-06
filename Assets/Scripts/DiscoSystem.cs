@@ -30,6 +30,7 @@ public class DiscoSystem : MonoBehaviour
         {
             EndDisco();
             paperPlane.ResetPlane();
+            paperPlane.turnOnDangerZones();
         }
     }
 

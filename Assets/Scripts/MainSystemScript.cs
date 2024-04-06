@@ -8,9 +8,9 @@ using UnityEngine.UIElements;
 
 public class MainSystemScript : MonoBehaviour
 {
-    public GameObject model, camera;   
+    public GameObject model, camera, redTint;   
     public CharacterController characterController;
-    public float speed, jumpSpeed;
+    public float speed, jumpSpeed, lives;
     public DiscoSystem discoSystem;
     public PaperPlane paperPlane;
 
@@ -19,13 +19,15 @@ public class MainSystemScript : MonoBehaviour
     private float bounceSpeed, angle, turnSmoothVelocity, time, ySpeed, originalStepOffset;
     private float turnSmoothTime = 0.1f;
     private Vector3 direction, velocity;
-    private Boolean bounced = false;
+    private Boolean bounced;
 
 
     // Start is called before the first frame update
     void Start()
     {
         originalStepOffset = characterController.stepOffset;
+        bounced = false;
+        lives = 5;
     }
 
     // Update is called once per frame
@@ -42,11 +44,8 @@ public class MainSystemScript : MonoBehaviour
             discoSystem.EndDisco();
             discoSystem.EnableCollider();
             paperPlane.ResetPlane();
-            characterController.enabled = false;
-            transform.position = position1.position;
-            transform.rotation = position1.rotation;
-            characterController.enabled = true;
-            
+            paperPlane.turnOffDangerZones();
+            TeleportPlayer(position1);
         }
 
         if (Input.GetKeyDown("2"))
@@ -54,10 +53,8 @@ public class MainSystemScript : MonoBehaviour
             transform.SetParent(null);
             discoSystem.ResetDisco();
             paperPlane.ResetPlane();
-            characterController.enabled = false;
-            transform.position = position2.position;
-            transform.rotation = position2.rotation;
-            characterController.enabled = true;
+            paperPlane.turnOffDangerZones();
+            TeleportPlayer(position2);
         }
 
         if (Input.GetKeyDown("3"))
@@ -65,10 +62,8 @@ public class MainSystemScript : MonoBehaviour
             transform.SetParent(null);
             discoSystem.EndDisco();
             paperPlane.ResetPlane();
-            characterController.enabled = false;
-            transform.position = position3.position;
-            transform.rotation = position3.rotation;
-            characterController.enabled = true;
+            paperPlane.turnOnDangerZones();
+            TeleportPlayer(position3);
 
         }
 
@@ -76,10 +71,7 @@ public class MainSystemScript : MonoBehaviour
         {
             transform.SetParent(null);
             discoSystem.EndDisco();
-            characterController.enabled = false;
-            transform.position = position4.position;
-            transform.rotation = position4.rotation;
-            characterController.enabled = true;
+            TeleportPlayer(position4);
 
         }
 
@@ -87,11 +79,7 @@ public class MainSystemScript : MonoBehaviour
         {
             transform.SetParent(null);
             discoSystem.EndDisco();
-            characterController.enabled = false;
-            transform.position = position5.position;
-            transform.rotation = position5.rotation;
-            characterController.enabled = true;
-
+            TeleportPlayer(position5);
         }
 
 
@@ -162,6 +150,39 @@ public class MainSystemScript : MonoBehaviour
         bounced = true;
     }
 
-    
-   
+    public void TeleportPlayer(Transform position)
+    {
+        characterController.enabled = false;
+        transform.position = position.position;
+        transform.rotation = position.rotation;
+        characterController.enabled = true;
+    }
+
+    public void removeLive()
+    {
+        lives--;
+        redTint.SetActive(true);
+        StartCoroutine(waiter(0.5f));
+        
+    }
+
+    public void addLive()
+    {
+        lives++;
+    }
+
+    private void OnGUI()
+    {
+        GUI.contentColor = Color.black;
+        GUI.skin.label.fontSize = 50;
+        GUI.Label(new Rect(10, 50, 400, 100), "Lives: " + lives);
+    }
+
+
+    IEnumerator waiter(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        redTint.SetActive(false);
+    }
+
 }

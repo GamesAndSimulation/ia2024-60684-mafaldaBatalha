@@ -8,6 +8,7 @@ public class PaperPlane : MonoBehaviour
 {
     public Transform position1, position2;
     public basicLerp basicLerp;
+    public GameObject dangerZones;
 
     private Boolean hasMoved;
 
@@ -25,11 +26,9 @@ public class PaperPlane : MonoBehaviour
 
     public void ResetPlane()
     {
-       
         basicLerp.enabled = false;
         hasMoved = false;
         transform.position = position1.position;
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -57,5 +56,15 @@ public class PaperPlane : MonoBehaviour
         {
             other.transform.SetParent(null);
         }
+    }
+
+    public void turnOffDangerZones()
+    {
+        dangerZones.SetActive(false);
+    }
+
+    public void turnOnDangerZones()
+    {
+        dangerZones.SetActive(true);
     }
 }
