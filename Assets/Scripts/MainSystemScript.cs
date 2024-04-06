@@ -14,7 +14,7 @@ public class MainSystemScript : MonoBehaviour
     public DiscoSystem discoSystem;
     public PaperPlane paperPlane;
 
-    public Transform position1, position2, position3;
+    public Transform position1, position2, position3, position4, position5;
 
     private float bounceSpeed, angle, turnSmoothVelocity, time, ySpeed, originalStepOffset;
     private float turnSmoothTime = 0.1f;
@@ -38,16 +38,22 @@ public class MainSystemScript : MonoBehaviour
 
         if (Input.GetKeyDown("1"))
         {
-            discoSystem.ResetDisco();
+            transform.SetParent(null);
+            discoSystem.EndDisco();
+            discoSystem.EnableCollider();
+            paperPlane.ResetPlane();
             characterController.enabled = false;
             transform.position = position1.position;
             transform.rotation = position1.rotation;
             characterController.enabled = true;
+            
         }
 
         if (Input.GetKeyDown("2"))
         {
+            transform.SetParent(null);
             discoSystem.ResetDisco();
+            paperPlane.ResetPlane();
             characterController.enabled = false;
             transform.position = position2.position;
             transform.rotation = position2.rotation;
@@ -62,6 +68,28 @@ public class MainSystemScript : MonoBehaviour
             characterController.enabled = false;
             transform.position = position3.position;
             transform.rotation = position3.rotation;
+            characterController.enabled = true;
+
+        }
+
+        if (Input.GetKeyDown("4"))
+        {
+            transform.SetParent(null);
+            discoSystem.EndDisco();
+            characterController.enabled = false;
+            transform.position = position4.position;
+            transform.rotation = position4.rotation;
+            characterController.enabled = true;
+
+        }
+
+        if (Input.GetKeyDown("5"))
+        {
+            transform.SetParent(null);
+            discoSystem.EndDisco();
+            characterController.enabled = false;
+            transform.position = position5.position;
+            transform.rotation = position5.rotation;
             characterController.enabled = true;
 
         }

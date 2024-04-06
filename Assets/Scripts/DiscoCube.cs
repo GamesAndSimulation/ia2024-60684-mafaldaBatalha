@@ -9,8 +9,6 @@ public class DiscoCube : MonoBehaviour
     public float bounceSpeed;
     public  MainSystemScript mainSystemScript;
 
-    private float originalJumpSpeed;
-
     // Start is called before the first frame update
     void Start()
     {

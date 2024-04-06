@@ -6,6 +6,7 @@ public class DiscoSystem : MonoBehaviour
 {
     public GameObject discoBall, disco, enemies;
     public Collider boxCollider;
+    public PaperPlane paperPlane;
     public float speed, enemyNum;
     
     // Start is called before the first frame update
@@ -28,6 +29,7 @@ public class DiscoSystem : MonoBehaviour
         if(enemyNum <= 0)
         {
             EndDisco();
+            paperPlane.ResetPlane();
         }
     }
 
@@ -55,5 +57,10 @@ public class DiscoSystem : MonoBehaviour
     public void EndDisco()
     {
         disco.SetActive(false);
+    }
+
+    public void EnableCollider()
+    {
+        boxCollider.enabled = true;
     }
 }
