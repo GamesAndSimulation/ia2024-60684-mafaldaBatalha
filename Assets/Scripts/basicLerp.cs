@@ -4,23 +4,30 @@ using UnityEngine;
 
 public class basicLerp : MonoBehaviour
 {
-    public Vector3 startPos, endPos;
+    public Transform startPos, endPos;
     public float speed = 0.5f;  // 2 secondes
 
-    private float startTime, totalDistance;
+    private float startTime;
 
     // Start is called before the first frame update
     void Start()
     {
         startTime = Time.time;
-        totalDistance = Vector3.Distance(startPos, endPos);
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         float t = (Time.time - startTime) * speed;
         if (t <= 1)
-            transform.position = Vector3.Lerp(startPos, endPos, t);
+        {
+            transform.position = Vector3.Lerp(startPos.position, endPos.position, t);
+            transform.rotation = Quaternion.Slerp(startPos.rotation, endPos.rotation, t);
+        }
+    }
+
+    public void ResetLerp()
+    {
+        startTime = Time.time;
     }
 }

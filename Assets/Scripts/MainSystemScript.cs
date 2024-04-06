@@ -8,22 +8,18 @@ using UnityEngine.UIElements;
 
 public class MainSystemScript : MonoBehaviour
 {
-    public GameObject model;
-    public GameObject camera;   
+    public GameObject model, camera;   
     public CharacterController characterController;
-    public float speed;
-    public float jumpSpeed;
-    public Boolean bounced = false;
+    public float speed, jumpSpeed;
+    public DiscoSystem discoSystem;
+    public PaperPlane paperPlane;
 
-    private float bounceSpeed;
-    private float angle;
+    public Transform position1, position2, position3;
+
+    private float bounceSpeed, angle, turnSmoothVelocity, time, ySpeed, originalStepOffset;
     private float turnSmoothTime = 0.1f;
-    private float turnSmoothVelocity;
-    private float ySpeed;
-    private float originalStepOffset;
-    private Vector3 direction;
-    private Vector3 velocity;
-    private float time;
+    private Vector3 direction, velocity;
+    private Boolean bounced = false;
 
 
     // Start is called before the first frame update
@@ -38,6 +34,37 @@ public class MainSystemScript : MonoBehaviour
 
         float horizontalValue = Input.GetAxis("Horizontal");
         float verticalValue = Input.GetAxis("Vertical");
+
+
+        if (Input.GetKeyDown("1"))
+        {
+            discoSystem.ResetDisco();
+            characterController.enabled = false;
+            transform.position = position1.position;
+            transform.rotation = position1.rotation;
+            characterController.enabled = true;
+        }
+
+        if (Input.GetKeyDown("2"))
+        {
+            discoSystem.ResetDisco();
+            characterController.enabled = false;
+            transform.position = position2.position;
+            transform.rotation = position2.rotation;
+            characterController.enabled = true;
+        }
+
+        if (Input.GetKeyDown("3"))
+        {
+            transform.SetParent(null);
+            discoSystem.EndDisco();
+            paperPlane.ResetPlane();
+            characterController.enabled = false;
+            transform.position = position3.position;
+            transform.rotation = position3.rotation;
+            characterController.enabled = true;
+
+        }
 
 
         //if the horizontal and vertical values are zero, it means the player is just standing, therefore I want them to face the camera

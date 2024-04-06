@@ -6,8 +6,7 @@ public class EnemyScript : MonoBehaviour
 {
     public DiscoSystem discoSystem;
     public List<Transform> positions;
-    public float speed = 0.5f;
-    public float totalLives;
+    public float speed, totalLives;
 
     private Transform startPos, endPos;
     private float startTime, totalDistance;
@@ -32,7 +31,7 @@ public class EnemyScript : MonoBehaviour
 
         if (currentLives == 0)
         {
-            discoSystem.killAnEnemy();
+            discoSystem.KillAnEnemy();
             gameObject.SetActive(false);
         }
 
@@ -72,7 +71,6 @@ public class EnemyScript : MonoBehaviour
         
         if(other.gameObject.tag == "Player")
         {
-            Debug.Log("AAAAA");
             currentLives--;
         }
             

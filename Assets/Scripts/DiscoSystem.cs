@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class DiscoSystem : MonoBehaviour
 {
-    public GameObject discoBall;
-    public GameObject disco;
+    public GameObject discoBall, disco, enemies;
     public Collider boxCollider;
-    public float speed;
-    public float enemyNum;
+    public float speed, enemyNum;
     
     // Start is called before the first frame update
     void Start()
@@ -23,13 +21,13 @@ public class DiscoSystem : MonoBehaviour
         discoBall.transform.eulerAngles = new Vector3(0f, speed * Time.time, 0f);
     }
 
-    public void killAnEnemy()
+    public void KillAnEnemy()
     {
         enemyNum--;
 
         if(enemyNum <= 0)
         {
-            disco.SetActive(false);
+            EndDisco();
         }
     }
 
@@ -41,5 +39,21 @@ public class DiscoSystem : MonoBehaviour
             boxCollider.enabled = false;
 
         }
+    }
+
+    public void ResetDisco()
+    {
+        disco.SetActive(true);
+        boxCollider.enabled = false;
+        foreach (Transform child in transform)
+        {
+            enemyNum++;
+            child.gameObject.SetActive(true);
+        }
+    }
+
+    public void EndDisco()
+    {
+        disco.SetActive(false);
     }
 }

@@ -23,7 +23,7 @@ public class MoveableObject : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         float t = (Time.time - startTime) * speed;
         //t += Time.deltaTime;  //alternative
